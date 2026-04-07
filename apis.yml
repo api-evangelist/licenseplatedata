@@ -1,8 +1,7 @@
 aid: licenseplatedata
 name: LicensePlateData
 description: >-
-  Developers first tools, our APIs give you access to our library of vehicle
-  information. 
+  Developers first tools, our APIs give you access to our library of vehicle information.
 type: Index
 position: Consumer
 access: 3rd-Party
@@ -18,8 +17,7 @@ apis:
   - aid: licenseplatedata:licenseplatedata
     name: LicensePlateData
     description: >-
-      Developers first tools, our APIs give you access to our library of vehicle
-      information. 
+      Developers first tools, our APIs give you access to our library of vehicle information.
     humanURL: ' https://licenseplatedata.com/'
     tags:
       - API
