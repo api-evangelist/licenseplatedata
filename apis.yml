@@ -6,8 +6,7 @@ type: Index
 position: Consumer
 access: 3rd-Party
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
-tags:
-  - API
+tags: []
 created: '2025-02-24'
 modified: '2026-03-16'
 url: >-
@@ -19,8 +18,7 @@ apis:
     description: >-
       Developers first tools, our APIs give you access to our library of vehicle information.
     humanURL: ' https://licenseplatedata.com/'
-    tags:
-      - API
+    tags: []
     properties:
       - type: Documentation
         url: ' https://licenseplatedata.com/'
