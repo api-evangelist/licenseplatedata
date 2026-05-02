@@ -40,7 +40,7 @@ apis:
       - type: Portal
         url: https://portal.licenseplatedata.com/
       - type: OpenAPI
-        url: https://raw.githubusercontent.com/api-evangelist/licenseplatedata/refs/heads/main/apis/licenseplatedata-openapi.yml
+        url: https://raw.githubusercontent.com/api-evangelist/licenseplatedata/refs/heads/main/openapi/licenseplatedata-openapi.yml
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com

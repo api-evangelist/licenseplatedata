@@ -44,7 +44,7 @@ Developer-first tools that give access to a library of vehicle information, incl
 
 - [Documentation](https://licenseplatedata.com/)
 - [Portal](https://portal.licenseplatedata.com/)
-- [OpenAPI](https://raw.githubusercontent.com/api-evangelist/licenseplatedata/refs/heads/main/apis/licenseplatedata-openapi.yml)
+- [OpenAPI](https://raw.githubusercontent.com/api-evangelist/licenseplatedata/refs/heads/main/openapi/licenseplatedata-openapi.yml)
 
 ## Maintainers
 
