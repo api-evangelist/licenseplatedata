@@ -1,0 +1,200 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: LicensePlateData API
+  description: Developer-first tools that provide access to a library of vehicle information. The API includes Plate to VIN,
+    VIN Decoding, and Vehicle Image services covering passenger cars, ATVs, light and heavy trucks, and trailers from 1980
+    to current model years.
+  tags:
+  - Licenseplatedata
+  - API
+  created: '2026-05-06'
+  modified: '2026-05-06'
+capability:
+  consumes:
+  - type: http
+    namespace: licenseplatedata
+    baseUri: https://api.licenseplatedata.com/v1
+    description: LicensePlateData API HTTP API.
+    authentication:
+      type: apikey
+      in: header
+      name: X-API-Key
+      value: '{{LICENSEPLATEDATA_TOKEN}}'
+    resources:
+    - name: plate-to-vin
+      path: /plate-to-vin
+      operations:
+      - name: platetovin
+        method: GET
+        description: Convert a license plate to a VIN
+        inputParameters:
+        - name: plate
+          in: query
+          type: string
+          required: true
+          description: License plate number
+        - name: state
+          in: query
+          type: string
+          required: true
+          description: Two-letter US state code
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: vin-vin
+      path: /vin/{vin}
+      operations:
+      - name: decodevin
+        method: GET
+        description: Decode a VIN
+        inputParameters:
+        - name: vin
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: vehicle-images
+      path: /vehicle-images
+      operations:
+      - name: getvehicleimages
+        method: GET
+        description: Retrieve vehicle images
+        inputParameters:
+        - name: vin
+          in: query
+          type: string
+        - name: year
+          in: query
+          type: integer
+        - name: make
+          in: query
+          type: string
+        - name: model
+          in: query
+          type: string
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    port: 8080
+    namespace: licenseplatedata-rest
+    description: REST adapter for LicensePlateData API.
+    resources:
+    - path: /plate-to-vin
+      name: platetovin
+      operations:
+      - method: GET
+        name: platetovin
+        description: Convert a license plate to a VIN
+        call: licenseplatedata.platetovin
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /vin/{vin}
+      name: decodevin
+      operations:
+      - method: GET
+        name: decodevin
+        description: Decode a VIN
+        call: licenseplatedata.decodevin
+        with:
+          vin: rest.vin
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /vehicle-images
+      name: getvehicleimages
+      operations:
+      - method: GET
+        name: getvehicleimages
+        description: Retrieve vehicle images
+        call: licenseplatedata.getvehicleimages
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    port: 9090
+    namespace: licenseplatedata-mcp
+    transport: http
+    description: MCP adapter for LicensePlateData API for AI agent use.
+    tools:
+    - name: platetovin
+      description: Convert a license plate to a VIN
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: licenseplatedata.platetovin
+      with:
+        plate: tools.plate
+        state: tools.state
+      inputParameters:
+      - name: plate
+        type: string
+        description: License plate number
+        required: true
+      - name: state
+        type: string
+        description: Two-letter US state code
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: decodevin
+      description: Decode a VIN
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: licenseplatedata.decodevin
+      with:
+        vin: tools.vin
+      inputParameters:
+      - name: vin
+        type: string
+        description: vin
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getvehicleimages
+      description: Retrieve vehicle images
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: licenseplatedata.getvehicleimages
+      with:
+        vin: tools.vin
+        year: tools.year
+        make: tools.make
+        model: tools.model
+      inputParameters:
+      - name: vin
+        type: string
+        description: vin
+      - name: year
+        type: integer
+        description: year
+      - name: make
+        type: string
+        description: make
+      - name: model
+        type: string
+        description: model
+      outputParameters:
+      - type: object
+        mapping: $.
+binds:
+- namespace: env
+  keys:
+    LICENSEPLATEDATA_TOKEN: LICENSEPLATEDATA_TOKEN
