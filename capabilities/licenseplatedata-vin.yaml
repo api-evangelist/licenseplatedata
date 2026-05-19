@@ -1,0 +1,81 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: LicensePlateData API — VIN
+  description: 'LicensePlateData API — VIN. 1 operations. Lead operation: Decode a VIN. Self-contained Naftiko capability
+    covering one Licenseplatedata business surface.'
+  tags:
+  - Licenseplatedata
+  - VIN
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    LICENSEPLATEDATA_API_KEY: LICENSEPLATEDATA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: licenseplatedata-vin
+    baseUri: https://api.licenseplatedata.com/v1
+    description: LicensePlateData API — VIN business capability. Self-contained, no shared references.
+    resources:
+    - name: vin-vin
+      path: /vin/{vin}
+      operations:
+      - name: decodevin
+        method: GET
+        description: Decode a VIN
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: vin
+          in: path
+          type: string
+          required: true
+    authentication:
+      type: apikey
+      key: X-API-Key
+      value: '{{env.LICENSEPLATEDATA_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: licenseplatedata-vin-rest
+    port: 8080
+    description: REST adapter for LicensePlateData API — VIN. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/vin/{vin}
+      name: vin-vin
+      description: REST surface for vin-vin.
+      operations:
+      - method: GET
+        name: decodevin
+        description: Decode a VIN
+        call: licenseplatedata-vin.decodevin
+        with:
+          vin: rest.vin
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: licenseplatedata-vin-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for LicensePlateData API — VIN. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: decode-vin
+      description: Decode a VIN
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: licenseplatedata-vin.decodevin
+      with:
+        vin: tools.vin
+      outputParameters:
+      - type: object
+        mapping: $.
