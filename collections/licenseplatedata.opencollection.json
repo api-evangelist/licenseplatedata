@@ -1,0 +1,118 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "LicensePlateData API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-Key",
+      "value": "{{X-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Plate",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Convert a license plate to a VIN",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.licenseplatedata.com/v1/plate-to-vin",
+            "params": [
+              {
+                "name": "plate",
+                "value": "",
+                "type": "query",
+                "description": "License plate number"
+              },
+              {
+                "name": "state",
+                "value": "",
+                "type": "query",
+                "description": "Two-letter US state code"
+              }
+            ]
+          },
+          "docs": "Convert a license plate to a VIN"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "VIN",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Decode a VIN",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.licenseplatedata.com/v1/vin/:vin",
+            "params": [
+              {
+                "name": "vin",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Decode a 17-character VIN into vehicle make, model, year, trim, and other attributes."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Images",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve vehicle images",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.licenseplatedata.com/v1/vehicle-images",
+            "params": [
+              {
+                "name": "vin",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "year",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "make",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "model",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "High-quality, OEM-style vehicle images with transparent backgrounds."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,380 @@
+{
+  "item": [
+    {
+      "id": "f86d8ed5-2302-4c66-81d4-56716c9c347a",
+      "name": "Plate",
+      "description": {
+        "content": "Convert license plates to VINs",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "cc25377f-4d39-414b-9e8b-ea75e2759ef7",
+          "name": "Convert a license plate to a VIN",
+          "request": {
+            "name": "Convert a license plate to a VIN",
+            "description": {},
+            "url": {
+              "path": [
+                "plate-to-vin"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "plate",
+                  "value": "<string>",
+                  "description": "(Required) License plate number"
+                },
+                {
+                  "disabled": false,
+                  "key": "state",
+                  "value": "<string>",
+                  "description": "(Required) Two-letter US state code"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "dd038e70-6618-424b-b561-ec67f5a1e9ac",
+              "name": "VIN lookup result",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plate-to-vin"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "plate",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"plate\": \"string\",\n  \"state\": \"string\",\n  \"vin\": \"string\",\n  \"vehicle\": {\n    \"vin\": \"string\",\n    \"year\": 6136,\n    \"make\": \"string\",\n    \"model\": \"string\",\n    \"trim\": \"string\",\n    \"bodyClass\": \"string\",\n    \"engine\": \"string\",\n    \"fuelType\": \"string\",\n    \"transmission\": \"string\",\n    \"driveType\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "1c2c4bff-8802-45ad-a606-2f0cafca8290",
+      "name": "VIN",
+      "description": {
+        "content": "Decode VINs into vehicle attributes",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "387db6f3-90e9-470f-a1d1-425bf5e538ba",
+          "name": "Decode a VIN",
+          "request": {
+            "name": "Decode a VIN",
+            "description": {
+              "content": "Decode a 17-character VIN into vehicle make, model, year, trim, and other attributes.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "vin",
+                ":vin"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "vin",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "97e82c2c-de26-4d08-be9d-6bf456aeb402",
+              "name": "Decoded vehicle",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vin",
+                    ":vin"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vin",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"vin\": \"string\",\n  \"year\": 7987,\n  \"make\": \"string\",\n  \"model\": \"string\",\n  \"trim\": \"string\",\n  \"bodyClass\": \"string\",\n  \"engine\": \"string\",\n  \"fuelType\": \"string\",\n  \"transmission\": \"string\",\n  \"driveType\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "4a9b8db8-fc3a-431d-bed1-e944b25284c0",
+      "name": "Images",
+      "description": {
+        "content": "Vehicle imagery",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2cd49a3b-7ef1-443e-befe-5a9b07be6fda",
+          "name": "Retrieve vehicle images",
+          "request": {
+            "name": "Retrieve vehicle images",
+            "description": {
+              "content": "High-quality, OEM-style vehicle images with transparent backgrounds.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "vehicle-images"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "vin",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "year",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "make",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "model",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1f416efe-9758-45ea-8a42-0ec09857dff4",
+              "name": "Image collection",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vehicle-images"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "vin",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "year",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "make",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "model",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"vehicle\": {\n    \"vin\": \"string\",\n    \"year\": 1439,\n    \"make\": \"string\",\n    \"model\": \"string\",\n    \"trim\": \"string\",\n    \"bodyClass\": \"string\",\n    \"engine\": \"string\",\n    \"fuelType\": \"string\",\n    \"transmission\": \"string\",\n    \"driveType\": \"string\"\n  },\n  \"images\": [\n    {\n      \"url\": \"https://L.miwZ-M.MLMr4Myai1nNpvkGtj97,Nxor3+fXGTi8F9WlIVFHha9mvTQzMPY43ezL+\",\n      \"angle\": \"string\",\n      \"width\": 6486,\n      \"height\": 8477\n    },\n    {\n      \"url\": \"https://LtodARpexmToCHOeKNMh.kuilt-UMxDlP-K,KtY6cuaeVZwNNg5p8z2bEtZAfG\",\n      \"angle\": \"string\",\n      \"width\": 2374,\n      \"height\": 3293\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.licenseplatedata.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "cc87a8b3-08b4-479b-bdf0-b638aaccceb6",
+    "name": "LicensePlateData API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Developer-first tools that provide access to a library of vehicle information. The API includes Plate to VIN, VIN Decoding, and Vehicle Image services covering passenger cars, ATVs, light and heavy trucks, and trailers from 1980 to current model years.\n\nContact Support:\n Name: LicensePlateData",
+      "type": "text/plain"
+    }
+  }
+}
