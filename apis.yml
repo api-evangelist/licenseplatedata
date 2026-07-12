@@ -42,4 +42,10 @@ apis:
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
-common: []
+common:
+  - type: DomainSecurity
+    url: security/licenseplatedata-domain-security.yml
+  - type: Authentication
+    url: authentication/licenseplatedata-authentication.yml
+  - url: https://licenseplatedata.com/blog
+    type: Blog
