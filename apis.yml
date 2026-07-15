@@ -43,6 +43,8 @@ maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
 common:
+  - type: AgenticAccess
+    url: agentic-access/licenseplatedata-agentic-access.yml
   - type: DomainSecurity
     url: security/licenseplatedata-domain-security.yml
   - type: Authentication
