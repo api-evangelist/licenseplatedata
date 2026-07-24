@@ -1,0 +1,69 @@
+openapi: 3.0.3
+info:
+  title: LicensePlateData Images VIN API
+  description: Developer-first tools that provide access to a library of vehicle information. The API includes Plate to VIN, VIN Decoding, and Vehicle Image services covering passenger cars, ATVs, light and heavy trucks, and trailers from 1980 to current model years.
+  version: v1
+  contact:
+    name: LicensePlateData
+    url: https://licenseplatedata.com/
+servers:
+- url: https://api.licenseplatedata.com/v1
+  description: Production
+security:
+- apiKeyAuth: []
+tags:
+- name: VIN
+  description: Decode VINs into vehicle attributes
+paths:
+  /vin/{vin}:
+    get:
+      tags:
+      - VIN
+      summary: Decode a VIN
+      description: Decode a 17-character VIN into vehicle make, model, year, trim, and other attributes.
+      operationId: decodeVin
+      parameters:
+      - in: path
+        name: vin
+        required: true
+        schema:
+          type: string
+          minLength: 17
+          maxLength: 17
+      responses:
+        '200':
+          description: Decoded vehicle
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Vehicle'
+components:
+  schemas:
+    Vehicle:
+      type: object
+      properties:
+        vin:
+          type: string
+        year:
+          type: integer
+        make:
+          type: string
+        model:
+          type: string
+        trim:
+          type: string
+        bodyClass:
+          type: string
+        engine:
+          type: string
+        fuelType:
+          type: string
+        transmission:
+          type: string
+        driveType:
+          type: string
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key

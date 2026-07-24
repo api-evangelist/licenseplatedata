@@ -1,0 +1,86 @@
+openapi: 3.0.3
+info:
+  title: LicensePlateData Images Plate API
+  description: Developer-first tools that provide access to a library of vehicle information. The API includes Plate to VIN, VIN Decoding, and Vehicle Image services covering passenger cars, ATVs, light and heavy trucks, and trailers from 1980 to current model years.
+  version: v1
+  contact:
+    name: LicensePlateData
+    url: https://licenseplatedata.com/
+servers:
+- url: https://api.licenseplatedata.com/v1
+  description: Production
+security:
+- apiKeyAuth: []
+tags:
+- name: Plate
+  description: Convert license plates to VINs
+paths:
+  /plate-to-vin:
+    get:
+      tags:
+      - Plate
+      summary: Convert a license plate to a VIN
+      operationId: plateToVin
+      parameters:
+      - in: query
+        name: plate
+        required: true
+        schema:
+          type: string
+        description: License plate number
+      - in: query
+        name: state
+        required: true
+        schema:
+          type: string
+          minLength: 2
+          maxLength: 2
+        description: Two-letter US state code
+      responses:
+        '200':
+          description: VIN lookup result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlateLookup'
+components:
+  schemas:
+    PlateLookup:
+      type: object
+      properties:
+        plate:
+          type: string
+        state:
+          type: string
+        vin:
+          type: string
+        vehicle:
+          $ref: '#/components/schemas/Vehicle'
+    Vehicle:
+      type: object
+      properties:
+        vin:
+          type: string
+        year:
+          type: integer
+        make:
+          type: string
+        model:
+          type: string
+        trim:
+          type: string
+        bodyClass:
+          type: string
+        engine:
+          type: string
+        fuelType:
+          type: string
+        transmission:
+          type: string
+        driveType:
+          type: string
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key
