@@ -1,0 +1,18 @@
+{
+  "provider": "licenseplatedata",
+  "sources": [
+    "licenseplatedata-images-api-openapi.yml",
+    "licenseplatedata-plate-api-openapi.yml",
+    "licenseplatedata-vin-api-openapi.yml"
+  ],
+  "outputs": [
+    "licenseplatedata-images-api-openapi.yml",
+    "licenseplatedata-plate-api-openapi.yml",
+    "licenseplatedata-vin-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

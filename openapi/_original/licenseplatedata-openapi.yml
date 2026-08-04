@@ -1,0 +1,172 @@
+openapi: 3.0.3
+info:
+  title: LicensePlateData API
+  description: >-
+    Developer-first tools that provide access to a library of vehicle
+    information. The API includes Plate to VIN, VIN Decoding, and Vehicle
+    Image services covering passenger cars, ATVs, light and heavy trucks,
+    and trailers from 1980 to current model years.
+  version: v1
+  contact:
+    name: LicensePlateData
+    url: https://licenseplatedata.com/
+servers:
+  - url: https://api.licenseplatedata.com/v1
+    description: Production
+security:
+  - apiKeyAuth: []
+tags:
+  - name: Plate
+    description: Convert license plates to VINs
+  - name: VIN
+    description: Decode VINs into vehicle attributes
+  - name: Images
+    description: Vehicle imagery
+paths:
+  /plate-to-vin:
+    get:
+      tags:
+        - Plate
+      summary: Convert a license plate to a VIN
+      operationId: plateToVin
+      parameters:
+        - in: query
+          name: plate
+          required: true
+          schema:
+            type: string
+          description: License plate number
+        - in: query
+          name: state
+          required: true
+          schema:
+            type: string
+            minLength: 2
+            maxLength: 2
+          description: Two-letter US state code
+      responses:
+        '200':
+          description: VIN lookup result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlateLookup'
+  /vin/{vin}:
+    get:
+      tags:
+        - VIN
+      summary: Decode a VIN
+      description: Decode a 17-character VIN into vehicle make, model, year, trim, and other attributes.
+      operationId: decodeVin
+      parameters:
+        - in: path
+          name: vin
+          required: true
+          schema:
+            type: string
+            minLength: 17
+            maxLength: 17
+      responses:
+        '200':
+          description: Decoded vehicle
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Vehicle'
+  /vehicle-images:
+    get:
+      tags:
+        - Images
+      summary: Retrieve vehicle images
+      description: High-quality, OEM-style vehicle images with transparent backgrounds.
+      operationId: getVehicleImages
+      parameters:
+        - in: query
+          name: vin
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: year
+          required: false
+          schema:
+            type: integer
+        - in: query
+          name: make
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: model
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Image collection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImageCollection'
+components:
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key
+  schemas:
+    PlateLookup:
+      type: object
+      properties:
+        plate:
+          type: string
+        state:
+          type: string
+        vin:
+          type: string
+        vehicle:
+          $ref: '#/components/schemas/Vehicle'
+    Vehicle:
+      type: object
+      properties:
+        vin:
+          type: string
+        year:
+          type: integer
+        make:
+          type: string
+        model:
+          type: string
+        trim:
+          type: string
+        bodyClass:
+          type: string
+        engine:
+          type: string
+        fuelType:
+          type: string
+        transmission:
+          type: string
+        driveType:
+          type: string
+    Image:
+      type: object
+      properties:
+        url:
+          type: string
+          format: uri
+        angle:
+          type: string
+        width:
+          type: integer
+        height:
+          type: integer
+    ImageCollection:
+      type: object
+      properties:
+        vehicle:
+          $ref: '#/components/schemas/Vehicle'
+        images:
+          type: array
+          items:
+            $ref: '#/components/schemas/Image'
