@@ -1,0 +1,165 @@
+{
+  "item": [
+    {
+      "id": "23bedf00-e321-4177-ba3c-61877bbbe178",
+      "name": "Images",
+      "description": {
+        "content": "Vehicle imagery",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2d558936-af89-4d91-a2d4-c667832d3c1e",
+          "name": "Retrieve vehicle images",
+          "request": {
+            "name": "Retrieve vehicle images",
+            "description": {
+              "content": "High-quality, OEM-style vehicle images with transparent backgrounds.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "vehicle-images"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "vin",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "year",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "make",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "model",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "33ecebbc-020a-432d-88d3-0beeebf1dfce",
+              "name": "Image collection",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vehicle-images"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "vin",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "year",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "make",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "model",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"vehicle\": {\n    \"vin\": \"string\",\n    \"year\": 814,\n    \"make\": \"string\",\n    \"model\": \"string\",\n    \"trim\": \"string\",\n    \"bodyClass\": \"string\",\n    \"engine\": \"string\",\n    \"fuelType\": \"string\",\n    \"transmission\": \"string\",\n    \"driveType\": \"string\"\n  },\n  \"images\": [\n    {\n      \"url\": \"http://fIHkKNCrmZsRSTShnkltAS.igiXt2rLcYavh17mi98OrNa0iP1-VM6M3vnMAKhDLAH\",\n      \"angle\": \"string\",\n      \"width\": 4787,\n      \"height\": 6081\n    },\n    {\n      \"url\": \"http://jLPdsfes.hkDKJo+H1QxSHRnpOU+1+\",\n      \"angle\": \"string\",\n      \"width\": 7021,\n      \"height\": 6887\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.licenseplatedata.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "47abd89a-c6aa-4790-b85f-2c7c26d023e4",
+    "name": "LicensePlateData Images API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Developer-first tools that provide access to a library of vehicle information. The API includes Plate to VIN, VIN Decoding, and Vehicle Image services covering passenger cars, ATVs, light and heavy trucks, and trailers from 1980 to current model years.\n\nContact Support:\n Name: LicensePlateData",
+      "type": "text/plain"
+    }
+  }
+}

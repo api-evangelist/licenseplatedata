@@ -1,0 +1,146 @@
+{
+  "item": [
+    {
+      "id": "47b81e1a-8f37-42f4-be84-c22afa02e50e",
+      "name": "Plate",
+      "description": {
+        "content": "Convert license plates to VINs",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3141c8cf-4f56-4133-99b0-0320e31af2ef",
+          "name": "Convert a license plate to a VIN",
+          "request": {
+            "name": "Convert a license plate to a VIN",
+            "description": {},
+            "url": {
+              "path": [
+                "plate-to-vin"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "plate",
+                  "value": "<string>",
+                  "description": "(Required) License plate number"
+                },
+                {
+                  "disabled": false,
+                  "key": "state",
+                  "value": "<string>",
+                  "description": "(Required) Two-letter US state code"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6ebe96ff-7fac-4775-b08a-37836cd1f0f0",
+              "name": "VIN lookup result",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plate-to-vin"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "plate",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"plate\": \"string\",\n  \"state\": \"string\",\n  \"vin\": \"string\",\n  \"vehicle\": {\n    \"vin\": \"string\",\n    \"year\": 881,\n    \"make\": \"string\",\n    \"model\": \"string\",\n    \"trim\": \"string\",\n    \"bodyClass\": \"string\",\n    \"engine\": \"string\",\n    \"fuelType\": \"string\",\n    \"transmission\": \"string\",\n    \"driveType\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.licenseplatedata.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "910801f9-b4f3-4398-99ab-3b851dc2691e",
+    "name": "LicensePlateData Images Plate API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Developer-first tools that provide access to a library of vehicle information. The API includes Plate to VIN, VIN Decoding, and Vehicle Image services covering passenger cars, ATVs, light and heavy trucks, and trailers from 1980 to current model years.\n\nContact Support:\n Name: LicensePlateData",
+      "type": "text/plain"
+    }
+  }
+}

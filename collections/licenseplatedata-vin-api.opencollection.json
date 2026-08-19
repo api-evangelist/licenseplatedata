@@ -1,0 +1,44 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "LicensePlateData Images VIN API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-Key",
+      "value": "{{X-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "VIN",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Decode a VIN",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.licenseplatedata.com/v1/vin/:vin",
+            "params": [
+              {
+                "name": "vin",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Decode a 17-character VIN into vehicle make, model, year, trim, and other attributes."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
