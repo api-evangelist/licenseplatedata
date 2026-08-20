@@ -39,6 +39,8 @@ apis:
   humanURL: https://licenseplatedata.com/
   baseURL: https://api.licenseplatedata.com/v1
   tags:
+  - Image
+  tags_raw:
   - Images
   properties:
   - type: OpenAPI
