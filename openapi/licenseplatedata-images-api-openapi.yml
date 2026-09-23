@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: LicensePlateData Images API
   description: Developer-first tools that provide access to a library of vehicle information. The API includes Plate to VIN, VIN Decoding, and Vehicle Image services covering passenger cars, ATVs, light and heavy trucks, and trailers from 1980 to current model years.
@@ -52,6 +52,18 @@ paths:
                 $ref: '#/components/schemas/ImageCollection'
 components:
   schemas:
+    Image:
+      type: object
+      properties:
+        url:
+          type: string
+          format: uri
+        angle:
+          type: string
+        width:
+          type: integer
+        height:
+          type: integer
     Vehicle:
       type: object
       properties:
@@ -84,18 +96,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Image'
-    Image:
-      type: object
-      properties:
-        url:
-          type: string
-          format: uri
-        angle:
-          type: string
-        width:
-          type: integer
-        height:
-          type: integer
   securitySchemes:
     apiKeyAuth:
       type: apiKey
