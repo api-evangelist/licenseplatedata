@@ -52,18 +52,15 @@ paths:
                 $ref: '#/components/schemas/ImageCollection'
 components:
   schemas:
-    Image:
+    ImageCollection:
       type: object
       properties:
-        url:
-          type: string
-          format: uri
-        angle:
-          type: string
-        width:
-          type: integer
-        height:
-          type: integer
+        vehicle:
+          $ref: '#/components/schemas/Vehicle'
+        images:
+          type: array
+          items:
+            $ref: '#/components/schemas/Image'
     Vehicle:
       type: object
       properties:
@@ -87,15 +84,18 @@ components:
           type: string
         driveType:
           type: string
-    ImageCollection:
+    Image:
       type: object
       properties:
-        vehicle:
-          $ref: '#/components/schemas/Vehicle'
-        images:
-          type: array
-          items:
-            $ref: '#/components/schemas/Image'
+        url:
+          type: string
+          format: uri
+        angle:
+          type: string
+        width:
+          type: integer
+        height:
+          type: integer
   securitySchemes:
     apiKeyAuth:
       type: apiKey
