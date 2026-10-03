@@ -61,6 +61,18 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Image'
+    Image:
+      type: object
+      properties:
+        url:
+          type: string
+          format: uri
+        angle:
+          type: string
+        width:
+          type: integer
+        height:
+          type: integer
     Vehicle:
       type: object
       properties:
@@ -84,18 +96,6 @@ components:
           type: string
         driveType:
           type: string
-    Image:
-      type: object
-      properties:
-        url:
-          type: string
-          format: uri
-        angle:
-          type: string
-        width:
-          type: integer
-        height:
-          type: integer
   securitySchemes:
     apiKeyAuth:
       type: apiKey
