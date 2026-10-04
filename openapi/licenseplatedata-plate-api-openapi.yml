@@ -45,17 +45,6 @@ paths:
                 $ref: '#/components/schemas/PlateLookup'
 components:
   schemas:
-    PlateLookup:
-      type: object
-      properties:
-        plate:
-          type: string
-        state:
-          type: string
-        vin:
-          type: string
-        vehicle:
-          $ref: '#/components/schemas/Vehicle'
     Vehicle:
       type: object
       properties:
@@ -79,6 +68,17 @@ components:
           type: string
         driveType:
           type: string
+    PlateLookup:
+      type: object
+      properties:
+        plate:
+          type: string
+        state:
+          type: string
+        vin:
+          type: string
+        vehicle:
+          $ref: '#/components/schemas/Vehicle'
   securitySchemes:
     apiKeyAuth:
       type: apiKey

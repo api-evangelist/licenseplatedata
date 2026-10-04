@@ -52,15 +52,6 @@ paths:
                 $ref: '#/components/schemas/ImageCollection'
 components:
   schemas:
-    ImageCollection:
-      type: object
-      properties:
-        vehicle:
-          $ref: '#/components/schemas/Vehicle'
-        images:
-          type: array
-          items:
-            $ref: '#/components/schemas/Image'
     Image:
       type: object
       properties:
@@ -96,6 +87,15 @@ components:
           type: string
         driveType:
           type: string
+    ImageCollection:
+      type: object
+      properties:
+        vehicle:
+          $ref: '#/components/schemas/Vehicle'
+        images:
+          type: array
+          items:
+            $ref: '#/components/schemas/Image'
   securitySchemes:
     apiKeyAuth:
       type: apiKey
